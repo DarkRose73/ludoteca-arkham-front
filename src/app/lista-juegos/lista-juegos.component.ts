@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Juego } from '../juego';
+import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -12,21 +13,19 @@ export class ListaJuegosComponent implements OnInit {
   //Crear un arreglo de juegos
   juegos: Juego[];
 
-  constructor() { }
+  constructor(private juegoServicio:JuegoService) { }
 
+  //Se ejecuta una vez al inicializar
   ngOnInit(): void {
-    //Inicializamos el arreglo de juegos con los datos dados abajo
-    this.juegos = [{
-      "id": 1,
-      "nombre": "Catan",
-      "precio": 45000
-    },
-    {
-      "id": 2,
-      "nombre": "Fantasma Blitz",
-      "precio": 10000
-    }
-    ];
+    this.obtenerJuegos();
   }
 
+  //Metodo para obtener los datos de los juegos
+  private obtenerJuegos(){
+    //Llamamos a la función para obtener los juegos desde el servicio
+    this.juegoServicio.obtenerLisaDeJuegos().subscribe(dato =>{
+      //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
+      this.juegos = dato;
+    });
+  }
 }
