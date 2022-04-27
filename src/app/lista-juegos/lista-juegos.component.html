@@ -1,0 +1,17 @@
+<h2>Lista juegos</h2>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let juego of juegos">
+            <td>{{juego.id}}</td>
+            <td>{{juego.nombre}}</td>
+            <td>{{juego.precio}}</td>
+        </tr>
+    </tbody>
+</table>
