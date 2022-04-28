@@ -6,17 +6,20 @@ import { AppComponent } from './app.component';
 import { ListaJuegosComponent } from './lista-juegos/lista-juegos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrarJuegoComponent } from './registrar-juego/registrar-juego.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaJuegosComponent,
     RegistrarJuegoComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

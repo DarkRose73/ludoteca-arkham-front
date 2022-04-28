@@ -23,7 +23,7 @@ export class ListaJuegosComponent implements OnInit {
   //Metodo para obtener los datos de los juegos
   private obtenerJuegos(){
     //Llamamos a la función para obtener los juegos desde el servicio
-    this.juegoServicio.obtenerLisaDeJuegos().subscribe(dato =>{
+    this.juegoServicio.obtenerListaDeJuegos().subscribe(dato =>{
       //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
       this.juegos = dato;
     });

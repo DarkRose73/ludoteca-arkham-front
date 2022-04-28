@@ -13,11 +13,17 @@ export class JuegoService {
   //URL obtiene el listado de todos los juegos de la BD
   private baseURL = "http://localhost:8080/api/v1/juegos";
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  //Metodo utilizado para obtener los empleados 
+  //Metodo utilizado para obtener los juegos 
   //Observable es un patron de diseño
-  obtenerLisaDeJuegos():Observable<Juego[]>{
+  obtenerListaDeJuegos(): Observable<Juego[]> {
     return this.httpClient.get<Juego[]>(`${this.baseURL}`);
+  }
+
+  //metodo utilizado para registrar juegos en la BD
+  registrarJuego(juego: Juego): Observable<Object> {
+    //El objeto enviado debe coincidir con el objeto en backend
+    return this.httpClient.post(`${this.baseURL}`, juego);
   }
 }
