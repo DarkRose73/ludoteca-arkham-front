@@ -7,12 +7,16 @@ import { ListaJuegosComponent } from './lista-juegos/lista-juegos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrarJuegoComponent } from './registrar-juego/registrar-juego.component';
 import { FormsModule } from '@angular/forms';
+import { ActualizarJuegoComponent } from './actualizar-juego/actualizar-juego.component';
+import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListaJuegosComponent,
-    RegistrarJuegoComponent
+    RegistrarJuegoComponent,
+    ActualizarJuegoComponent,
+    JuegoDetallesComponent
 
   ],
   imports: [

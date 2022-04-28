@@ -26,4 +26,19 @@ export class JuegoService {
     //El objeto enviado debe coincidir con el objeto en backend
     return this.httpClient.post(`${this.baseURL}`, juego);
   }
+
+  //Metodo utilizado para actualizar juegos
+  actualizarJuego(id:number, juego:Juego):Observable<Object>{
+    return this.httpClient.put(`${this.baseURL}/${id}`, juego);
+  }
+
+  //Metodo utilizado para obtener un juego en base a su id
+  obtenerJuegoPorId(id:number):Observable<Juego>{
+    return this.httpClient.get<Juego>(`${this.baseURL}/${id}`);
+  }
+
+  eliminarJuego(id:number):Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
+
 }

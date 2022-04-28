@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -13,7 +15,7 @@ export class ListaJuegosComponent implements OnInit {
   //Crear un arreglo de juegos
   juegos: Juego[];
 
-  constructor(private juegoServicio:JuegoService) { }
+  constructor(private juegoServicio: JuegoService, private router: Router) { }
 
   //Se ejecuta una vez al inicializar
   ngOnInit(): void {
@@ -21,11 +23,38 @@ export class ListaJuegosComponent implements OnInit {
   }
 
   //Metodo para obtener los datos de los juegos
-  private obtenerJuegos(){
+  private obtenerJuegos() {
     //Llamamos a la función para obtener los juegos desde el servicio
-    this.juegoServicio.obtenerListaDeJuegos().subscribe(dato =>{
+    this.juegoServicio.obtenerListaDeJuegos().subscribe(dato => {
       //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
       this.juegos = dato;
     });
+  }
+
+  actualizarJuego(id: number) {
+    this.router.navigate(['actualizar-juego', id]);
+  }
+
+  eliminarJuego(id: number) {
+    Swal.fire({
+      title: "¿Está seguro querer eliminar el juego?",
+      text: "La eliminación del juego será permanente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      confirmButtonText: "Sí",
+      cancelButtonColor: "red",
+      cancelButtonText: "No"
+    }).then(resultado => {
+      if (resultado.value) {
+        this.juegoServicio.eliminarJuego(id).subscribe(dato => {
+          console.log(dato);
+          this.obtenerJuegos();
+        });
+      }
+    });
+  }
+  verDetalles(id:number){
+    this.router.navigate(['juego-detalles',id]);
   }
 }

@@ -5,7 +5,8 @@
             <!-- Joan Salas 28/04 -->
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Edicion</th>
+            <th>Edición</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +14,12 @@
             <td>{{juego.nombre}}</td>
             <td>{{juego.precio}}</td>
             <td>{{juego.edicion}}</td>
+            <td>
+                <button (click)="actualizarJuego(juego.id)" class="btn btn-dark">Editar</button>
+                <button (click)="eliminarJuego(juego.id)" class="btn btn-danger"
+                    style="margin-left : 10px">Eliminar</button>
+                <button (click)="verDetalles(juego.id)" class="btn btn-dark" style="margin-left : 10px">Detalles</button>
+            </td>
         </tr>
     </tbody>
 </table>
