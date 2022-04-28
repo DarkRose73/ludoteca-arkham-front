@@ -1,7 +1,15 @@
 <!-- CREADO POR JOAN SALAS 27/04 -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a routerLink="juegos" routerLinkActive="active" class="nav-link">Lista de juegos</a>
+        </li>
+    </ul>
+</nav>
 <!-- title llama al titulo por defecto del proyecto -->
 <h1 class="text-center">{{title}}</h1>
 <!-- llamar al componente lista de juegos -->
 <div class="container">
-    <app-lista-juegos></app-lista-juegos>
+    <!-- Etiqueta especial en angular para mostrar componentes -->
+    <router-outlet></router-outlet>
 </div>

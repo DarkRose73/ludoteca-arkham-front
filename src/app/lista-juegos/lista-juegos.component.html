@@ -2,16 +2,17 @@
 <table class="table table-striped">
     <thead class="table-dark">
         <tr>
-            <th>ID</th>
+            <!-- Joan Salas 28/04 -->
             <th>Nombre</th>
             <th>Precio</th>
+            <th>Edicion</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let juego of juegos">
-            <td>{{juego.id}}</td>
             <td>{{juego.nombre}}</td>
             <td>{{juego.precio}}</td>
+            <td>{{juego.edicion}}</td>
         </tr>
     </tbody>
 </table>
