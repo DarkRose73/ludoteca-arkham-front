@@ -37,6 +37,7 @@ export class JuegoService {
     return this.httpClient.get<Juego>(`${this.baseURL}/${id}`);
   }
 
+  //Metodo utilizado para eliminar un juego de la BD
   eliminarJuego(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }

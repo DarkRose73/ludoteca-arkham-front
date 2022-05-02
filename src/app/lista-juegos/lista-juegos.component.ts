@@ -14,20 +14,26 @@ export class ListaJuegosComponent implements OnInit {
   //Joan Salas 27/04
   //Crear un arreglo de juegos
   juegos: Juego[];
+  total: number
 
   constructor(private juegoServicio: JuegoService, private router: Router) { }
 
   //Se ejecuta una vez al inicializar
   ngOnInit(): void {
     this.obtenerJuegos();
+
   }
 
   //Metodo para obtener los datos de los juegos
   private obtenerJuegos() {
+    this.total = 0;
     //Llamamos a la función para obtener los juegos desde el servicio
     this.juegoServicio.obtenerListaDeJuegos().subscribe(dato => {
       //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
       this.juegos = dato;
+      dato.forEach(juego => {
+        this.total += juego.precio;
+      });
     });
   }
 
@@ -54,7 +60,7 @@ export class ListaJuegosComponent implements OnInit {
       }
     });
   }
-  verDetalles(id:number){
-    this.router.navigate(['juego-detalles',id]);
+  verDetalles(id: number) {
+    this.router.navigate(['juego-detalles', id]);
   }
 }

@@ -1,7 +1,7 @@
-<h2>Lista juegos</h2>
-<table class="table table-striped">
+<h2 class="text-light">Lista juegos</h2>
+<table class="table table-borderless">
     <thead class="table-dark">
-        <tr>
+        <tr class="titulo">
             <!-- Joan Salas 28/04 -->
             <th>Nombre</th>
             <th>Precio</th>
@@ -9,7 +9,7 @@
             <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-light">
         <tr *ngFor="let juego of juegos">
             <td>{{juego.nombre}}</td>
             <td>{{juego.precio}}</td>
@@ -20,6 +20,10 @@
                     style="margin-left : 10px">Eliminar</button>
                 <button (click)="verDetalles(juego.id)" class="btn btn-dark" style="margin-left : 10px">Detalles</button>
             </td>
+        </tr>
+        <!-- Se agrega esta parte para mostrar el precio total de la ludoteca -->
+        <tr>
+            <td class="bg-danger text-center text-light">Mi precioso: ${{total}}</td> 
         </tr>
     </tbody>
 </table>

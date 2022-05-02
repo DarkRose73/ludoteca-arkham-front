@@ -23,7 +23,6 @@ export class RegistrarJuegoComponent implements OnInit {
   //Este método llama al método del mismo nombre en juego.services.ts (lin:25)
   guardarJuego() {
     this.juegoServicio.registrarJuego(this.juego).subscribe(dato => {
-      console.log(dato);
       this.irListaJuegos();
     }, error => console.log(error));
   }

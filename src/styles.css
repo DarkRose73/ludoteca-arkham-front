@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* Autor: Joan Salas 02/05 */
+
+.fondo {
+    background-image: url("https://images.alphacoders.com/509/509983.jpg");
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.titulo{
+    font-weight: bold;
+    font-style: italic;
+    font-family:'Franklin Gothic Medium';
+}
