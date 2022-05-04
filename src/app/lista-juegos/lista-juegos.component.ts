@@ -14,6 +14,7 @@ export class ListaJuegosComponent implements OnInit {
   //Joan Salas 27/04
   //Crear un arreglo de juegos
   juegos: Juego[];
+  expansiones: any;
   total: number
 
   constructor(private juegoServicio: JuegoService, private router: Router) { }
@@ -28,6 +29,12 @@ export class ListaJuegosComponent implements OnInit {
   private obtenerJuegos() {
     this.total = 0;
     //Llamamos a la función para obtener los juegos desde el servicio
+    this.juegoServicio.listarTodasExpansiones().subscribe(exp=>{
+      this.expansiones = exp;
+      this.expansiones.forEach(expa=>{
+        this.total += expa.precio;
+      })
+    })
     this.juegoServicio.obtenerListaDeJuegos().subscribe(dato => {
       //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
       this.juegos = dato;
@@ -62,5 +69,8 @@ export class ListaJuegosComponent implements OnInit {
   }
   verDetalles(id: number) {
     this.router.navigate(['juego-detalles', id]);
+  }
+  verExpansiones(id: number){
+    this.router.navigate(['juego-expansiones', id]);
   }
 }

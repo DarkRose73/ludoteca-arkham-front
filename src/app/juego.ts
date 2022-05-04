@@ -5,3 +5,9 @@ export class Juego {
     precio:number;
     edicion:String;
 }
+export class Expansion{
+    id:number
+    idJuego:number
+    nombre:String
+    precio:number
+}

@@ -9,6 +9,7 @@ import { RegistrarJuegoComponent } from './registrar-juego/registrar-juego.compo
 import { FormsModule } from '@angular/forms';
 import { ActualizarJuegoComponent } from './actualizar-juego/actualizar-juego.component';
 import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.component';
+import { JuegoExpansionesComponent } from './juego-expansiones/juego-expansiones.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.componen
     ListaJuegosComponent,
     RegistrarJuegoComponent,
     ActualizarJuegoComponent,
-    JuegoDetallesComponent
+    JuegoDetallesComponent,
+    JuegoExpansionesComponent
 
   ],
   imports: [

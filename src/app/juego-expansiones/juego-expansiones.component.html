@@ -1,0 +1,17 @@
+<h2 class="text-light">Lista Expansiones {{juego.nombre}}</h2>
+<table class="table table-borderless">
+    <thead class="table-dark">
+        <tr class="titulo">
+            <!-- Joan Salas 04/05 -->
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="text-light">
+        <tr *ngFor="let expansion of expansiones">
+            <td>{{expansion.nombre}}</td>
+            <td>{{expansion.precio}}</td>
+        </tr>
+    </tbody>
+</table>
