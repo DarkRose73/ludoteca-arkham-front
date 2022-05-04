@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -10,11 +11,11 @@ import { JuegoService } from '../juego.service';
 })
 export class JuegoExpansionesComponent implements OnInit {
 
-  expansiones:any;
-  idJuego:number;
-  juego:Juego;
+  expansiones: any;
+  idJuego: number;
+  juego: Juego;
 
-  constructor(private juegoServicio:JuegoService, private router:Router, private route:ActivatedRoute) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.obtenerNombreJuego();
@@ -22,18 +23,41 @@ export class JuegoExpansionesComponent implements OnInit {
     this.obtenerExpansiones(this.idJuego);
   }
 
-  obtenerExpansiones(id:number){
-    this.juegoServicio.listarExpansiones(id).subscribe(dato=>{
-      this.expansiones=dato;
+  obtenerExpansiones(id: number) {
+    this.juegoServicio.listarExpansiones(id).subscribe(dato => {
+      this.expansiones = dato;
     });
   }
 
-  obtenerNombreJuego(){
+  obtenerNombreJuego() {
     this.idJuego = this.route.snapshot.params['id'];
     this.juego = new Juego();
-    this.juegoServicio.obtenerJuegoPorId(this.idJuego).subscribe(dato=>{
+    this.juegoServicio.obtenerJuegoPorId(this.idJuego).subscribe(dato => {
       this.juego = dato;
-    },error => console.log(error));
+    }, error => console.log(error));
+  }
+
+  eliminarExpansion(id: number) {
+    Swal.fire({
+      title: "¿Está seguro querer eliminar la expansión?",
+      text: "La eliminación de la expansión será permanente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      confirmButtonText: "Sí",
+      cancelButtonColor: "red",
+      cancelButtonText: "No"
+    }).then(resultado => {
+      if (resultado.value) {
+        this.juegoServicio.eliminarExpansion(id).subscribe(dato => {
+          this.obtenerExpansiones(this.idJuego);
+        });
+      }
+    });
+  }
+
+  agregarExpansion(id: number) {
+    console.log(id);
   }
 
 }

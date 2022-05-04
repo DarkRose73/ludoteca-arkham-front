@@ -16,15 +16,17 @@
             <td>{{juego.edicion}}</td>
             <td>
                 <button (click)="actualizarJuego(juego.id)" class="btn btn-dark">Editar</button>
+                <button (click)="verDetalles(juego.id)" class="btn btn-dark"
+                    style="margin-left : 10px">Detalles</button>
+                <button (click)="verExpansiones(juego.id)" class="btn btn-dark"
+                    style="margin-left : 10px">Expansiones</button>
                 <button (click)="eliminarJuego(juego.id)" class="btn btn-danger"
                     style="margin-left : 10px">Eliminar</button>
-                <button (click)="verDetalles(juego.id)" class="btn btn-dark" style="margin-left : 10px">Detalles</button>
-                <button (click)="verExpansiones(juego.id)" class="btn btn-dark" style="margin-left : 10px">Expansiones</button>
             </td>
         </tr>
         <!-- Se agrega esta parte para mostrar el precio total de la ludoteca -->
         <tr>
-            <td class="bg-danger text-center text-light">Mi precioso: ${{total}}</td> 
+            <td class="bg-danger text-center text-light">Mi precioso: ${{total}}</td>
         </tr>
     </tbody>
 </table>

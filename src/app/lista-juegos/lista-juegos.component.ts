@@ -22,19 +22,18 @@ export class ListaJuegosComponent implements OnInit {
   //Se ejecuta una vez al inicializar
   ngOnInit(): void {
     this.obtenerJuegos();
-
   }
 
   //Metodo para obtener los datos de los juegos
   private obtenerJuegos() {
     this.total = 0;
     //Llamamos a la función para obtener los juegos desde el servicio
-    this.juegoServicio.listarTodasExpansiones().subscribe(exp=>{
+    this.juegoServicio.listarTodasExpansiones().subscribe(exp => {
       this.expansiones = exp;
-      this.expansiones.forEach(expa=>{
+      this.expansiones.forEach(expa => {
         this.total += expa.precio;
-      })
-    })
+      });
+    });
     this.juegoServicio.obtenerListaDeJuegos().subscribe(dato => {
       //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
       this.juegos = dato;
@@ -49,28 +48,45 @@ export class ListaJuegosComponent implements OnInit {
   }
 
   eliminarJuego(id: number) {
-    Swal.fire({
-      title: "¿Está seguro querer eliminar el juego?",
-      text: "La eliminación del juego será permanente",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "green",
-      confirmButtonText: "Sí",
-      cancelButtonColor: "red",
-      cancelButtonText: "No"
-    }).then(resultado => {
-      if (resultado.value) {
-        this.juegoServicio.eliminarJuego(id).subscribe(dato => {
-          console.log(dato);
-          this.obtenerJuegos();
-        });
+
+    let expas = [];
+    this.expansiones.forEach(element => {
+      if (element.idJuego == id) {
+        expas.push(1);
       }
     });
+
+    if (expas.length == 0) {
+      Swal.fire({
+        title: "¿Está seguro querer eliminar el juego?",
+        text: "La eliminación del juego será permanente",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "green",
+        confirmButtonText: "Sí",
+        cancelButtonColor: "red",
+        cancelButtonText: "No"
+      }).then(resultado => {
+        if (resultado.value) {
+          this.juegoServicio.eliminarJuego(id).subscribe(dato => {
+            this.obtenerJuegos();
+          });
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Error al eliminar juego",
+        text: "No se puede eliminar un juego que tenga expansiones, elimine las expansiones primero",
+        icon: "warning",
+      });
+    }
+
   }
+
   verDetalles(id: number) {
     this.router.navigate(['juego-detalles', id]);
   }
-  verExpansiones(id: number){
+  verExpansiones(id: number) {
     this.router.navigate(['juego-expansiones', id]);
   }
 }

@@ -45,12 +45,18 @@ export class JuegoService {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 
+
+  //Joan Salas 04/05
   listarExpansiones(id:number):Observable<Object>{
     return this.httpClient.get<Expansion>(`${this.expansionURL}/${id}`);
   }
-
   listarTodasExpansiones():Observable<Object>{
     return this.httpClient.get<Expansion>(`${this.expURL}`);
   }
-
+  eliminarExpansion(id:number):Observable<Object>{
+    return this.httpClient.delete(`${this.expURL}/${id}`)
+  }
+  agregarExpansion(expansion:Expansion){
+    return this.httpClient.post(`${this.expURL}`, expansion);
+  }
 }

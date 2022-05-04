@@ -12,6 +12,11 @@
         <tr *ngFor="let expansion of expansiones">
             <td>{{expansion.nombre}}</td>
             <td>{{expansion.precio}}</td>
+            <td>
+                <button (click)="eliminarExpansion(expansion.id)" class="btn btn-danger"
+                    style="margin-left : 10px">Eliminar</button>
+            </td>
         </tr>
+        <button (click)="agregarExpansion(juego.id)" class="btn btn-dark">Agregar Expansion</button>
     </tbody>
 </table>
