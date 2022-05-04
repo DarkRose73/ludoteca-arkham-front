@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Expansion } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Juego } from './juego';
+import { Juego,Expansion } from './juego';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +55,7 @@ export class JuegoService {
   eliminarExpansion(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.expURL}/${id}`)
   }
-  agregarExpansion(expansion:Expansion){
+  registrarExpansion(expansion:Expansion):Observable<Object>{
     return this.httpClient.post(`${this.expURL}`, expansion);
   }
 }

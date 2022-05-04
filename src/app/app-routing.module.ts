@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActualizarJuegoComponent } from './actualizar-juego/actualizar-juego.component';
+import { AgregarExpansionComponent } from './agregar-expansion/agregar-expansion.component';
 import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.component';
 import { JuegoExpansionesComponent } from './juego-expansiones/juego-expansiones.component';
 import { ListaJuegosComponent } from './lista-juegos/lista-juegos.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'juegos', pathMatch: 'full' },
   { path: 'actualizar-juego/:id', component: ActualizarJuegoComponent },
   { path: 'juego-detalles/:id', component: JuegoDetallesComponent },
-  { path: 'juego-expansiones/:id', component: JuegoExpansionesComponent }
+  { path: 'juego-expansiones/:id', component: JuegoExpansionesComponent },
+  { path: 'expansion-agregar/:id', component: AgregarExpansionComponent }
 
 ];
 

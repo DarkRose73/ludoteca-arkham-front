@@ -57,7 +57,6 @@ export class JuegoExpansionesComponent implements OnInit {
   }
 
   agregarExpansion(id: number) {
-    console.log(id);
+    this.router.navigate(['expansion-agregar', id]);
   }
-
 }
