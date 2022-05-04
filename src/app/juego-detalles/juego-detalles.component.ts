@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Juego } from '../juego';
+import { Expansion, Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class JuegoDetallesComponent implements OnInit {
 
   id:number
   juego:Juego
+  expansiones:any;
   constructor(private route:ActivatedRoute, private juegoServicio:JuegoService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,9 @@ export class JuegoDetallesComponent implements OnInit {
     this.juegoServicio.obtenerJuegoPorId(this.id).subscribe(dato=>{
       this.juego = dato;
     },error => console.log(error));
+    this.juegoServicio.listarExpansiones(this.id).subscribe(dato=>{
+      this.expansiones=(dato);
+    })
   }
 
 }

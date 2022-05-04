@@ -11,7 +11,12 @@
     </thead>
     <tbody class="text-light">
         <tr *ngFor="let juego of juegos">
-            <td>{{juego.nombre}}</td>
+            <div *ngIf="juego.edicion=='limitada';else elseBlock">
+                <td class="text-warning"><b>{{juego.nombre}}</b></td>
+            </div>
+            <ng-template #elseBlock>
+                <td>{{juego.nombre}}</td>
+            </ng-template>
             <td>{{juego.precio}}</td>
             <td>{{juego.edicion}}</td>
             <td>

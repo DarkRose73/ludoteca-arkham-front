@@ -1,4 +1,4 @@
-<h3 class="text-danger"><b>Detalles del juego: </b> </h3>
+<h3 class="text-danger"><b>Detalles de {{juego.nombre}}: </b> </h3>
 <div class="text-light">
     <div>
         <label> <b>ID: </b>{{juego.id}}</label>
@@ -11,5 +11,12 @@
     </div>
     <div>
         <label> <b>Edición: </b>{{juego.edicion}}</label>
+    </div>
+    <div>
+        <label><b>Expansiones: </b>
+            <ul *ngFor="let expansion of expansiones">
+                <li>{{expansion.nombre}}</li>
+            </ul>
+        </label>
     </div>
 </div>
