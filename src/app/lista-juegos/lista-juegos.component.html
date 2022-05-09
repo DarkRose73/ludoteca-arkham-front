@@ -1,37 +1,42 @@
-<h2 class="text-light">Lista juegos</h2>
-<table class="table table-borderless">
-    <thead class="table-dark">
-        <tr class="titulo">
-            <!-- Joan Salas 28/04 -->
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Edición</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody class="text-light">
-        <tr *ngFor="let juego of juegos">
-            <div *ngIf="juego.edicion=='limitada';else elseBlock">
-                <td class="text-warning"><b>{{juego.nombre}}</b></td>
-            </div>
-            <ng-template #elseBlock>
-                <td>{{juego.nombre}}</td>
-            </ng-template>
-            <td>{{juego.precio}}</td>
-            <td>{{juego.edicion}}</td>
-            <td>
-                <button (click)="actualizarJuego(juego.id)" class="btn btn-dark">Editar</button>
-                <button (click)="verDetalles(juego.id)" class="btn btn-dark"
-                    style="margin-left : 10px">Detalles</button>
-                <button (click)="verExpansiones(juego.id)" class="btn btn-dark"
-                    style="margin-left : 10px">Expansiones</button>
-                <button (click)="eliminarJuego(juego.id)" class="btn btn-danger"
-                    style="margin-left : 10px">Eliminar</button>
-            </td>
-        </tr>
-        <!-- Se agrega esta parte para mostrar el precio total de la ludoteca -->
-        <tr>
-            <td class="bg-danger text-center text-light">Mi precioso: ${{total}}</td>
-        </tr>
-    </tbody>
-</table>
+<h2 class="text-light text-center">Lista juegos</h2>
+<div class="card card-body bg-dark opacidad mx-auto border-danger">
+    <table class="table table-borderless">
+        <thead class="text-light">
+            <tr class="titulo">
+                <!-- Joan Salas 28/04 -->
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th class="text-center">Edición</th>
+                <th class="text-center">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-light">
+            <tr *ngFor="let juego of juegos">
+                <div *ngIf="juego.edicion=='limitada';else elseBlock">
+                    <td class="text-warning"><b>{{juego.nombre}}</b></td>
+                </div>
+                <ng-template #elseBlock>
+                    <td>{{juego.nombre}}</td>
+                </ng-template>
+                <td>${{juego.precio}}</td>
+                <td class="text-center">{{juego.edicion}}</td>
+                <td class="text-center">
+                    <button (click)="actualizarJuego(juego.id)" class="btn btn-dark btn-outline-success">Editar</button>
+                    <button (click)="verDetalles(juego.id)" class="btn btn-dark btn-outline-info"
+                        style="margin-left : 20px">Detalles</button>
+                    <button (click)="verExpansiones(juego.id)" class="btn btn-dark btn-outline-warning"
+                        style="margin-left : 20px">Expansiones</button>
+                    <button (click)="eliminarJuego(juego.id)" class="btn btn-dark btn-outline-danger"
+                        style="margin-left : 20px">Eliminar</button>
+                </td>
+            </tr>
+            <!-- Se agrega esta parte para mostrar el precio total de la ludoteca -->
+            <tr>
+                <td class="bg-danger text-center text-light borde">Mi precioso: ${{total}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="card-footer">
+
+</div>

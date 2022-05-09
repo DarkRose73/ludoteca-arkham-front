@@ -1,22 +1,24 @@
-<h2 class="text-light">Lista Expansiones {{juego.nombre}}</h2>
-<table class="table table-borderless">
-    <thead class="table-dark">
-        <tr class="titulo">
-            <!-- Joan Salas 04/05 -->
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody class="text-light">
-        <tr *ngFor="let expansion of expansiones">
-            <td>{{expansion.nombre}}</td>
-            <td>{{expansion.precio}}</td>
-            <td>
-                <button (click)="eliminarExpansion(expansion.id)" class="btn btn-danger"
-                    style="margin-left : 10px">Eliminar</button>
-            </td>
-        </tr>
-        <button (click)="agregarExpansion(juego.id)" class="btn btn-dark">Agregar Expansion</button>
-    </tbody>
-</table>
+<h2 class="text-light text-center">Lista Expansiones {{juego.nombre}}</h2>
+<div class="card card-body bg-dark opacidad mx-auto border-danger">
+    <table class="table table-borderless">
+        <thead class="table-dark">
+            <tr class="titulo">
+                <!-- Joan Salas 04/05 -->
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-light">
+            <tr *ngFor="let expansion of expansiones">
+                <td>{{expansion.nombre}}</td>
+                <td>{{expansion.precio}}</td>
+                <td>
+                    <button (click)="eliminarExpansion(expansion.id)" class="btn btn-dark btn-outline-danger"
+                        style="margin-left : 10px">Eliminar</button>
+                </td>
+            </tr>
+            <button (click)="agregarExpansion(juego.id)" class="btn btn-dark btn-outline-success">Agregar Expansion</button>
+        </tbody>
+    </table>
+</div>

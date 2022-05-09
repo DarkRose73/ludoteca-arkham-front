@@ -1,6 +1,6 @@
 <!-- Creado por Joan Salas 28/04 -->
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center text-danger bg-dark">Registro de juego</h3>
+    <h3 class="text-center text-light">Registro de juego</h3>
     <!-- El formulario llama a la funcion onSubmit que esta ubicada en registrar-juego.component.ts -->
     <form (ngSubmit)="onSubmit()" #juegoForm="ngForm">
         <div class="form-group">
@@ -51,7 +51,7 @@
         </div>
         <br>
         <div class="text-center">
-            <button class="btn btn-dark" [disabled]="!juegoForm.form.valid">Agregar</button>
+            <button class="btn btn-dark btn-outline-success" [disabled]="!juegoForm.form.valid">Agregar</button>
         </div>
     </form>
 </div>

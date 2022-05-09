@@ -1,6 +1,6 @@
 <!-- Creado por Joan Salas 04/05 -->
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center text-danger bg-dark">Registro de expansión para {{juego.nombre}}</h3>
+    <h3 class="text-center text-light">Registro de expansión para {{juego.nombre}}</h3>
     <form (ngSubmit)="onSubmit()" #expansionForm="ngForm">
         <div class="form-group">
             <label class="text-light">Nombre</label>
@@ -34,7 +34,7 @@
         </div>
         <br>
         <div class="text-center">
-            <button class="btn btn-dark" [disabled]="!expansionForm.form.valid">Agregar</button>
+            <button class="btn btn-dark btn-outline-success" [disabled]="!expansionForm.form.valid">Agregar</button>
         </div>
     </form>
 </div>
