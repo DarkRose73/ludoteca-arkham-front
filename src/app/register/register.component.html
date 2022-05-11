@@ -1,1 +1,68 @@
-<p>register works!</p>
+<!-- Creado por Joan Salas -->
+<br>
+<div class="card card-body col-lg-6 mx-auto" id="card-login">
+    <br>
+    <h3 class="text-center text-light">Registro de usuario</h3>
+    <br>
+    <form (ngSubmit)="onSubmit()" #usuarioForm="ngForm">
+        <div class="form-group">
+            <label class="text-light">Correo</label>
+            <input type="email" class="form-control bg-dark text-light" id="correoUsuario" name="correo" required
+                [(ngModel)]="usuario.correo" placeholder="Ingrese su correo" minlength="4" maxlength="59"
+                #correo="ngModel"
+                pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+            <div class="alert alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+                <div *ngIf="correo.errors['required']">
+                    Ingrese el correo por favor
+                </div>
+                <div *ngIf="correo.errors['minlength']">
+                    El correo debe contener mínimo 4 carácteres
+                </div>
+                <div *ngIf="correo.errors['pattern']">
+                    Correo mal ingresado, debe ser del formato usuario@correo.dominio
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label class="text-light">Nombre de usuario</label>
+            <input type="text" class="form-control bg-dark text-light" id="nombreUsuario" name="nombreUsuario" required
+                [(ngModel)]="usuario.nombreUsuario" placeholder="Ingrese su nombre de usuario" minlength="4"
+                maxlength="59" #nombreUsuario="ngModel">
+            <div class="alert alert-danger"
+                *ngIf="nombreUsuario.invalid && (nombreUsuario.dirty || nombreUsuario.touched)">
+                <div *ngIf="nombreUsuario.errors['required']">
+                    Ingrese el nombre de usuario por favor
+                </div>
+                <div *ngIf="nombreUsuario.errors['minlength']">
+                    Nombre de usuario debe contener mínimo 4 carácteres
+                </div>
+                <div *ngIf="nombreUsuario.errors['maxlength']">
+                    Nombre de usuario debe contener como máximo 59 carácteres
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label class="text-light">Contraseña</label>
+            <input type="password" class="form-control bg-dark text-light" id="contrasenia"
+                [(ngModel)]="usuario.contrasenia" name="contrasenia" required placeholder="Ingrese su contraseña"
+                #contrasenia="ngModel" minlength="4" maxlength="30">
+            <div class="alert alert-danger" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
+                <div *ngIf="contrasenia.errors['required']">
+                    Ingrese su contraseña por favor
+                </div>
+                <div *ngIf="contrasenia.errors['minlength']">
+                    Contraseña demasiado corta
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="text-center">
+            <button class="btn btn-dark btn-outline-success" [disabled]="!usuarioForm.form.valid">Agregar</button>
+        </div>
+        <br>
+
+    </form>
+
+</div>

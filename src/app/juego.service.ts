@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Juego,Expansion } from './juego';
+import { Juego } from './juego';
 
 @Injectable({
   providedIn: 'root'
@@ -29,17 +29,17 @@ export class JuegoService {
   }
 
   //Metodo utilizado para actualizar juegos
-  actualizarJuego(id:number, juego:Juego):Observable<Object>{
+  actualizarJuego(id: number, juego: Juego): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, juego);
   }
 
   //Metodo utilizado para obtener un juego en base a su id
-  obtenerJuegoPorId(id:number):Observable<Juego>{
+  obtenerJuegoPorId(id: number): Observable<Juego> {
     return this.httpClient.get<Juego>(`${this.baseURL}/${id}`);
   }
 
   //Metodo utilizado para eliminar un juego de la BD
-  eliminarJuego(id:number):Observable<Object>{
+  eliminarJuego(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }

@@ -6,8 +6,15 @@ export class Juego {
     edicion:String;
 }
 export class Expansion{
-    id:number
-    idJuego:number
-    nombre:String
-    precio:number
+    id:number;
+    idJuego:number;
+    nombre:String;
+    precio:number;
+}
+
+export class Usuario{
+    id:number;
+    correo:String;
+    contrasenia:String;
+    nombreUsuario:String;
 }

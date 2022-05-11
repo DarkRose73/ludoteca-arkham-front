@@ -5,6 +5,8 @@ import { AgregarExpansionComponent } from './agregar-expansion/agregar-expansion
 import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.component';
 import { JuegoExpansionesComponent } from './juego-expansiones/juego-expansiones.component';
 import { ListaJuegosComponent } from './lista-juegos/lista-juegos.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { RegistrarJuegoComponent } from './registrar-juego/registrar-juego.component';
 //Joan Salas 28/04
 //Configuracion de rutas
@@ -13,8 +15,10 @@ const routes: Routes = [
   { path: 'juegos', component: ListaJuegosComponent },
   //Ruta para registrar juego
   { path: 'registrar-juego', component: RegistrarJuegoComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   //Al entrar a una ruta vacia, redireccionare a la ruta juegos (la de arriba)
-  { path: '', redirectTo: 'juegos', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'actualizar-juego/:id', component: ActualizarJuegoComponent },
   { path: 'juego-detalles/:id', component: JuegoDetallesComponent },
   { path: 'juego-expansiones/:id', component: JuegoExpansionesComponent },
