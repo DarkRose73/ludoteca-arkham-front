@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ExpansionesService } from '../expansiones.service';
 import { Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -15,7 +16,7 @@ export class JuegoExpansionesComponent implements OnInit {
   idJuego: number;
   juego: Juego;
 
-  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute, private expansionServicio:ExpansionesService) { }
 
   ngOnInit(): void {
     this.obtenerNombreJuego();
@@ -24,7 +25,7 @@ export class JuegoExpansionesComponent implements OnInit {
   }
 
   obtenerExpansiones(id: number) {
-    this.juegoServicio.listarExpansiones(id).subscribe(dato => {
+    this.expansionServicio.listarExpansiones(id).subscribe(dato => {
       this.expansiones = dato;
     });
   }
@@ -49,7 +50,7 @@ export class JuegoExpansionesComponent implements OnInit {
       cancelButtonText: "No"
     }).then(resultado => {
       if (resultado.value) {
-        this.juegoServicio.eliminarExpansion(id).subscribe(dato => {
+        this.expansionServicio.eliminarExpansion(id).subscribe(dato => {
           this.obtenerExpansiones(this.idJuego);
         });
       }

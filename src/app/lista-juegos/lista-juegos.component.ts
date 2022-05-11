@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ExpansionesService } from '../expansiones.service';
 import { Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -17,7 +18,7 @@ export class ListaJuegosComponent implements OnInit {
   expansiones: any;
   total: number
 
-  constructor(private juegoServicio: JuegoService, private router: Router) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private expansionServicio:ExpansionesService) { }
 
   //Se ejecuta una vez al inicializar
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class ListaJuegosComponent implements OnInit {
   private obtenerJuegos() {
     this.total = 0;
     //Llamamos a la función para obtener los juegos desde el servicio
-    this.juegoServicio.listarTodasExpansiones().subscribe(exp => {
+    this.expansionServicio.listarTodasExpansiones().subscribe(exp => {
       this.expansiones = exp;
       this.expansiones.forEach(expa => {
         this.total += expa.precio;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ExpansionesService } from '../expansiones.service';
 import { Expansion, Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -15,7 +16,7 @@ export class AgregarExpansionComponent implements OnInit {
   idJuego: number;
   juego : Juego;
 
-  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute, private expansionServicio:ExpansionesService) { }
 
   ngOnInit(): void {
     this.obtenerNombreJuego();
@@ -74,7 +75,7 @@ export class AgregarExpansionComponent implements OnInit {
   }
 
   guardarExpansion(){
-    this.juegoServicio.registrarExpansion(this.expansion).subscribe(dato => {
+    this.expansionServicio.registrarExpansion(this.expansion).subscribe(dato => {
       this.irListaExpansiones();
     }, error => console.log(error));
   }

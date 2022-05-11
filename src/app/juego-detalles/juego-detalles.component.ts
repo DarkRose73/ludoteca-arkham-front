@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ExpansionesService } from '../expansiones.service';
 import { Expansion, Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 
@@ -15,7 +16,7 @@ export class JuegoDetallesComponent implements OnInit {
   id:number
   juego:Juego
   expansiones:any;
-  constructor(private route:ActivatedRoute, private juegoServicio:JuegoService) { }
+  constructor(private route:ActivatedRoute, private juegoServicio:JuegoService, private expansionServicio:ExpansionesService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -23,7 +24,7 @@ export class JuegoDetallesComponent implements OnInit {
     this.juegoServicio.obtenerJuegoPorId(this.id).subscribe(dato=>{
       this.juego = dato;
     },error => console.log(error));
-    this.juegoServicio.listarExpansiones(this.id).subscribe(dato=>{
+    this.expansionServicio.listarExpansiones(this.id).subscribe(dato=>{
       this.expansiones=(dato);
     })
   }

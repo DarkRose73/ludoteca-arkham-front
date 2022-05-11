@@ -11,6 +11,8 @@ import { ActualizarJuegoComponent } from './actualizar-juego/actualizar-juego.co
 import { JuegoDetallesComponent } from './juego-detalles/juego-detalles.component';
 import { JuegoExpansionesComponent } from './juego-expansiones/juego-expansiones.component';
 import { AgregarExpansionComponent } from './agregar-expansion/agregar-expansion.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AgregarExpansionComponent } from './agregar-expansion/agregar-expansion
     ActualizarJuegoComponent,
     JuegoDetallesComponent,
     JuegoExpansionesComponent,
-    AgregarExpansionComponent
+    AgregarExpansionComponent,
+    LoginComponent,
+    RegisterComponent
 
   ],
   imports: [

@@ -12,8 +12,7 @@ export class JuegoService {
   //aquí va el URL que se crea desde el backend
   //URL obtiene el listado de todos los juegos de la BD
   private baseURL = "http://localhost:8080/api/v1/juegos";
-  private expansionURL = "http://localhost:8080/api/v1/expansionesjuego";
-  private expURL = "http://localhost:8080/api/v1/expansiones";
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -42,20 +41,5 @@ export class JuegoService {
   //Metodo utilizado para eliminar un juego de la BD
   eliminarJuego(id:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
-  }
-
-
-  //Joan Salas 04/05
-  listarExpansiones(id:number):Observable<Object>{
-    return this.httpClient.get<Expansion>(`${this.expansionURL}/${id}`);
-  }
-  listarTodasExpansiones():Observable<Object>{
-    return this.httpClient.get<Expansion>(`${this.expURL}`);
-  }
-  eliminarExpansion(id:number):Observable<Object>{
-    return this.httpClient.delete(`${this.expURL}/${id}`)
-  }
-  registrarExpansion(expansion:Expansion):Observable<Object>{
-    return this.httpClient.post(`${this.expURL}`, expansion);
   }
 }
