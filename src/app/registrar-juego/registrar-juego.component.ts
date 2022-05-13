@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Juego } from '../juego';
 import { JuegoService } from '../juego.service';
 import Swal from 'sweetalert2';
@@ -14,10 +14,11 @@ export class RegistrarJuegoComponent implements OnInit {
 
   //Joan Salas 28/04
   juego: Juego = new Juego();
-  constructor(private juegoServicio: JuegoService, private router: Router) { }
+  idUsuario:number;
+  constructor(private juegoServicio: JuegoService, private router: Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.idUsuario = this.route.snapshot.params['idUsuario'];
   }
 
   //Este método llama al método del mismo nombre en juego.services.ts (lin:25)
@@ -29,7 +30,7 @@ export class RegistrarJuegoComponent implements OnInit {
 
   //Metodo para movernos a la lista de juegos
   irListaJuegos() {
-    this.router.navigate(['/juegos']);
+    this.router.navigate(['/juegos-usuario',this.idUsuario]);
   }
 
   //Metodo llamado por el formulario al realizar el submit (rellenar y presionar boton guardar)
@@ -55,6 +56,7 @@ export class RegistrarJuegoComponent implements OnInit {
       errores.push("precio muy alto");
     }
     if (errores.length == 0) {
+      this.juego.idUsuario=this.idUsuario;
       Swal.fire({
         title: "Juego agregado exitosamente",
         text: "El juego " + this.juego.nombre + " fue agregado exitosamente",

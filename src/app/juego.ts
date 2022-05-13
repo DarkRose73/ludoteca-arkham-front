@@ -4,6 +4,7 @@ export class Juego {
     nombre:String;
     precio:number;
     edicion:String;
+    idUsuario:number;
 }
 export class Expansion{
     id:number;

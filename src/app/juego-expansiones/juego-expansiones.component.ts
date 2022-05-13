@@ -15,12 +15,14 @@ export class JuegoExpansionesComponent implements OnInit {
   expansiones: any;
   idJuego: number;
   juego: Juego;
+  idUsuario: number;
 
-  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute, private expansionServicio:ExpansionesService) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private route: ActivatedRoute, private expansionServicio: ExpansionesService) { }
 
   ngOnInit(): void {
     this.obtenerNombreJuego();
-    this.idJuego = this.route.snapshot.params['id'];
+    this.idUsuario = this.route.snapshot.params['idUsuario'];
+    this.idJuego = this.route.snapshot.params['idJuego'];
     this.obtenerExpansiones(this.idJuego);
   }
 
@@ -31,7 +33,7 @@ export class JuegoExpansionesComponent implements OnInit {
   }
 
   obtenerNombreJuego() {
-    this.idJuego = this.route.snapshot.params['id'];
+    this.idJuego = this.route.snapshot.params['idJuego'];
     this.juego = new Juego();
     this.juegoServicio.obtenerJuegoPorId(this.idJuego).subscribe(dato => {
       this.juego = dato;
@@ -57,7 +59,10 @@ export class JuegoExpansionesComponent implements OnInit {
     });
   }
 
+  irListaJuegos() {
+    this.router.navigate(['/juegos-usuario', this.idUsuario]);
+  }
   agregarExpansion(id: number) {
-    this.router.navigate(['expansion-agregar', id]);
+    this.router.navigate(['expansion-agregar', this.idUsuario, id]);
   }
 }

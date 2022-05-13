@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from '../juego';
+import { UsuarioService } from '../usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +12,28 @@ import { Usuario } from '../juego';
 export class LoginComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
-  constructor(private router: Router) { }
+  idUsuario: number;
+  constructor(private router: Router, private usuariosServicio: UsuarioService) { }
 
   ngOnInit(): void {
+
   }
 
   onSubmit(): void {
-    console.log(this.usuario);
-    this.irListaJuegos();
+    this.usuariosServicio.obtenerUsuarioPorCorreo(this.usuario.correo).subscribe(usuarioCorrecto => {
+      if (usuarioCorrecto.correo == this.usuario.correo && usuarioCorrecto.contrasenia == this.usuario.contrasenia) {
+        this.idUsuario = usuarioCorrecto.id;
+        this.irListaJuegos();
+
+      } else {
+        Swal.fire({
+          title: "Error al ingresar",
+          text: "Credenciales incorrectas, intente nuevamente"
+        }).then(i => {
+          this.router.navigate['/login'];
+        })
+      }
+    });
   }
 
   irListaJuegos() {
@@ -26,8 +41,8 @@ export class LoginComponent implements OnInit {
       title: "¡Login exitoso!",
       text: "Login exitoso, redireccionando..."
 
-    }).then(i=>{
-      this.router.navigate(['/juegos']);
+    }).then(i => {
+      this.router.navigate(['/juegos-usuario', this.idUsuario]);
     });
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ExpansionesService } from '../expansiones.service';
-import { Juego } from '../juego';
+import { Expansion, Juego, Usuario } from '../juego';
 import { JuegoService } from '../juego.service';
+import { UsuarioService } from '../usuario.service';
 
 @Component({
   selector: 'app-lista-juegos',
@@ -15,79 +16,78 @@ export class ListaJuegosComponent implements OnInit {
   //Joan Salas 27/04
   //Crear un arreglo de juegos
   juegos: Juego[];
+  juegosUsuario: any;
   expansiones: any;
-  total: number
+  total: number;
+  idUsuario: number;
 
-  constructor(private juegoServicio: JuegoService, private router: Router, private expansionServicio:ExpansionesService) { }
+  constructor(private juegoServicio: JuegoService, private router: Router, private expansionServicio: ExpansionesService, private usuarioServicio: UsuarioService, private route: ActivatedRoute) { }
 
   //Se ejecuta una vez al inicializar
   ngOnInit(): void {
-    this.obtenerJuegos();
+    this.idUsuario = this.route.snapshot.params['id'];
+    this.obtenerJuegosUsuario();
   }
-
-  //Metodo para obtener los datos de los juegos
-  private obtenerJuegos() {
+  private obtenerJuegosUsuario() {
     this.total = 0;
-    //Llamamos a la función para obtener los juegos desde el servicio
-    this.expansionServicio.listarTodasExpansiones().subscribe(exp => {
-      this.expansiones = exp;
-      this.expansiones.forEach(expa => {
-        this.total += expa.precio;
+    let expansiones2 = [];
+    this.usuarioServicio.obtenerJuegosUsuario(this.idUsuario).subscribe(dato => {
+      this.juegosUsuario = dato;
+      this.juegosUsuario.forEach(element => {
+        this.expansionServicio.listarExpansiones(element.id).subscribe(exp => {
+          this.expansiones = exp;
+          this.expansiones.forEach(expa => {
+            this.total += expa.precio;
+            expansiones2.push(expa);
+          });
+        });
+        this.total += element.precio;
       });
     });
-    this.juegoServicio.obtenerListaDeJuegos().subscribe(dato => {
-      //Agregamos los datos de la llamada al arreglo juego creado anteriormente (lin:14)
-      this.juegos = dato;
-      dato.forEach(juego => {
-        this.total += juego.precio;
-      });
-    });
+    this.expansiones = expansiones2;
   }
 
   actualizarJuego(id: number) {
-    this.router.navigate(['actualizar-juego', id]);
+    this.router.navigate(['actualizar-juego', this.idUsuario, id]);
+  }
+  verDetalles(id: number) {
+    this.router.navigate(['juego-detalles',this.idUsuario, id]);
   }
 
   eliminarJuego(id: number) {
-
-    let expas = [];
-    this.expansiones.forEach(element => {
-      if (element.idJuego == id) {
-        expas.push(1);
+    this.expansionServicio.listarExpansiones(id).subscribe(dato => {
+      if (dato[0] == null) {
+        Swal.fire({
+          title: "¿Está seguro querer eliminar el juego?",
+          text: "La eliminación del juego será permanente",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "green",
+          confirmButtonText: "Sí",
+          cancelButtonColor: "red",
+          cancelButtonText: "No"
+        }).then(resultado => {
+          if (resultado.value) {
+            this.juegoServicio.eliminarJuego(id).subscribe(dato => {
+              this.obtenerJuegosUsuario();
+            });
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error al eliminar juego",
+          text: "No se puede eliminar un juego que tenga expansiones, elimine las expansiones primero",
+          icon: "warning",
+        });
       }
     });
-
-    if (expas.length == 0) {
-      Swal.fire({
-        title: "¿Está seguro querer eliminar el juego?",
-        text: "La eliminación del juego será permanente",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "green",
-        confirmButtonText: "Sí",
-        cancelButtonColor: "red",
-        cancelButtonText: "No"
-      }).then(resultado => {
-        if (resultado.value) {
-          this.juegoServicio.eliminarJuego(id).subscribe(dato => {
-            this.obtenerJuegos();
-          });
-        }
-      });
-    } else {
-      Swal.fire({
-        title: "Error al eliminar juego",
-        text: "No se puede eliminar un juego que tenga expansiones, elimine las expansiones primero",
-        icon: "warning",
-      });
-    }
-
   }
 
-  verDetalles(id: number) {
-    this.router.navigate(['juego-detalles', id]);
-  }
   verExpansiones(id: number) {
-    this.router.navigate(['juego-expansiones', id]);
+    this.router.navigate(['juego-expansiones',this.idUsuario, id]);
+  }
+
+  agregarJuegoUsuario(id: number) {
+    this.router.navigate(['registrar-juego', id]);
   }
 }

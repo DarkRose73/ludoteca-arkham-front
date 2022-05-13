@@ -9,8 +9,9 @@
         <div class="form-group">
             <label class="text-light">Nombre</label>
             <!-- Todo el contenido del input ira relacionado con juego creado en registrar-juego-component.ts (lin:12) -->
-            <input type="text" class="form-control bg-dark text-light"  id="nombreJuego" [(ngModel)]="juego.nombre" name="nombre" required
-                placeholder="Ingrese nombre del juego" minlength="4" maxlength="59" #nombre="ngModel">
+            <input type="text" class="form-control bg-dark text-light" id="nombreJuego" [(ngModel)]="juego.nombre"
+                name="nombre" required placeholder="Ingrese nombre del juego" minlength="4" maxlength="59"
+                #nombre="ngModel">
             <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                 <div *ngIf="nombre.errors['required']">
                     Ingrese el nombre del juego por favor
@@ -26,8 +27,8 @@
         <div class="form-group">
             <label class="text-light">Precio</label>
             <!-- Todo el contenido del input ira relacionado con juego creado en registrar-juego-component.ts (lin:12) -->
-            <input type="number" class="form-control bg-dark text-light" id="precioJuego" [(ngModel)]="juego.precio" name="precio" required
-                placeholder="Ingrese precio" min="0" #precio="ngModel">
+            <input type="number" class="form-control bg-dark text-light" id="precioJuego" [(ngModel)]="juego.precio"
+                name="precio" required placeholder="Ingrese precio" min="0" #precio="ngModel">
             <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
                 <div *ngIf="precio.errors['required']">
                     Ingrese el precio del juego por favor
@@ -41,8 +42,8 @@
         <div class="form-group">
             <label class="text-light">Edición</label>
             <!-- Todo el contenido del input ira relacionado con juego creado en registrar-juego-component.ts (lin:12) -->
-            <select name="edicion" id="edicionJuego" class="form-control bg-dark text-light" [(ngModel)]="juego.edicion" required
-                #edicion="ngModel">
+            <select name="edicion" id="edicionJuego" class="form-control bg-dark text-light" [(ngModel)]="juego.edicion"
+                required #edicion="ngModel">
                 <option value="estándar">Estándar</option>
                 <option value="limitada">Limitada</option>
             </select>
@@ -54,8 +55,12 @@
         </div>
         <br>
         <div class="text-center">
-            <button class="btn btn-dark btn-outline-success" [disabled]="!juegoForm.form.valid">Actualizar</button>
+            <button class="btn btn-outline-success" [disabled]="!juegoForm.form.valid">Actualizar</button>
+
         </div>
         <br>
     </form>
+    <div class="text-center">
+        <button (click)="irListaJuegos()" class="btn btn-secondary">Volver</button>
+    </div>
 </div>

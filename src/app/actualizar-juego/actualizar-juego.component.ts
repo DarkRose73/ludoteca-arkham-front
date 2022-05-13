@@ -11,29 +11,31 @@ import { JuegoService } from '../juego.service';
 })
 export class ActualizarJuegoComponent implements OnInit {
 //Autor: Joan Salas 02/05
-  id: number
+  idJuego: number;
   juego: Juego;
+  idUsuario:number;
   constructor(private route: ActivatedRoute, private juegoServicio: JuegoService, private router:Router) { }
 
   //Al iniciar la ventana, rescatamos los valores
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    this.idJuego = this.route.snapshot.params['idJuego'];
+    this.idUsuario = this.route.snapshot.params['idUsuario'];
     this.juego = new Juego();
-    this.juegoServicio.obtenerJuegoPorId(this.id).subscribe(dato => {
+    this.juegoServicio.obtenerJuegoPorId(this.idJuego).subscribe(dato => {
       this.juego = dato;
     });
   }
 
   //Método para actualizar la informacion del juego
   actualizarJuego(){
-    this.juegoServicio.actualizarJuego(this.id,this.juego).subscribe(dato=>{
+    this.juegoServicio.actualizarJuego(this.idJuego,this.juego).subscribe(dato=>{
       this.irListaJuegos();
     },error=>console.log(error));
   }
 
   //Metodo para movernos a la lista de juegos
   irListaJuegos() {
-    this.router.navigate(['/juegos']);
+    this.router.navigate(['/juegos-usuario', this.idUsuario]);
   }
 
   //Método llamado por el formulario al momento de presionar el boton

@@ -4,5 +4,11 @@
 }
 
 .borde{
-    border-radius: 50%;
+    border-radius: 30px;
 }
+/*
+Al pasar mouse sobre el elemento se cambia
+.borde:hover{
+    border-radius: 30px;
+}
+*/

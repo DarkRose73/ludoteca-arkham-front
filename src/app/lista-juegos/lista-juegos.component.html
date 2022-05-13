@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody class="text-light">
-            <tr *ngFor="let juego of juegos">
+            <tr *ngFor="let juego of juegosUsuario">
                 <div *ngIf="juego.edicion=='limitada';else elseBlock">
                     <td class="text-warning"><b>{{juego.nombre}}</b></td>
                 </div>
@@ -37,6 +37,7 @@
         </tbody>
     </table>
 </div>
-<div class="card-footer">
-
+<div class="card-footer text-center">
+    <button (click)="agregarJuegoUsuario(idUsuario)" class="btn btn-dark btn-outline-danger"
+    style="margin-left : 20px">Agregar Juego</button>
 </div>

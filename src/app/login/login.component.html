@@ -2,7 +2,7 @@
 <br>
 <div class="card card-body col-lg-6 mx-auto" id="card-login">
     <br>
-    <h3 class="text-center text-light">Ingreso de usuario</h3>
+    <h3 class="text-center text-light">Inicio de sesión</h3>
     <br>
     <form (ngSubmit)="onSubmit()" #usuarioForm="ngForm">
         <div class="form-group">
@@ -29,16 +29,16 @@
             <label class="text-light">Contraseña</label>
             <input type="password" class="form-control bg-dark text-light" id="contrasenia"
                 [(ngModel)]="usuario.contrasenia" name="contrasenia" required placeholder="Ingrese su contraseña"
-                #contrasenia="ngModel" minlength="4" maxlength="30">
+                #contrasenia="ngModel" maxlength="30">
             <div class="alert alert-danger" *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)">
                 <div *ngIf="contrasenia.errors['required']">
                     Ingrese su contraseña por favor
-                </div>        
+                </div>
             </div>
         </div>
         <br><br>
         <div class="text-center">
-            <button class="btn btn-dark btn-outline-success" [disabled]="!usuarioForm.form.valid">Agregar</button>
+            <button class="btn btn-light btn-outline-success" [disabled]="!usuarioForm.form.valid">Ingresar</button>
         </div>
         <br>
 

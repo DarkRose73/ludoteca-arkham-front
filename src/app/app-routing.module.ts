@@ -14,15 +14,16 @@ const routes: Routes = [
   //Al acceder al path juegos, redireccionare al componente lista de juegos
   { path: 'juegos', component: ListaJuegosComponent },
   //Ruta para registrar juego
-  { path: 'registrar-juego', component: RegistrarJuegoComponent },
+  { path: 'registrar-juego/:idUsuario', component: RegistrarJuegoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'juegos-usuario/:id', component: ListaJuegosComponent },
   //Al entrar a una ruta vacia, redireccionare a la ruta juegos (la de arriba)
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'actualizar-juego/:id', component: ActualizarJuegoComponent },
-  { path: 'juego-detalles/:id', component: JuegoDetallesComponent },
-  { path: 'juego-expansiones/:id', component: JuegoExpansionesComponent },
-  { path: 'expansion-agregar/:id', component: AgregarExpansionComponent }
+  { path: 'actualizar-juego/:idUsuario/:idJuego', component: ActualizarJuegoComponent },
+  { path: 'juego-detalles/:idUsuario/:idJuego', component: JuegoDetallesComponent },
+  { path: 'juego-expansiones/:idUsuario/:idJuego', component: JuegoExpansionesComponent },
+  { path: 'expansion-agregar/:idUsuario/:idJuego', component: AgregarExpansionComponent }
 
 ];
 

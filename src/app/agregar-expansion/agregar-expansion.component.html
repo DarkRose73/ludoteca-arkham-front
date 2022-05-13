@@ -7,8 +7,9 @@
     <form (ngSubmit)="onSubmit()" #expansionForm="ngForm">
         <div class="form-group">
             <label class="text-light">Nombre</label>
-            <input type="text" class="form-control bg-dark text-light" id="nombreExpansion" [(ngModel)]="expansion.nombre" name="nombre" required
-                placeholder="Ingrese nombre de la expansión" minlength="4" maxlength="59" #nombre="ngModel">
+            <input type="text" class="form-control bg-dark text-light" id="nombreExpansion"
+                [(ngModel)]="expansion.nombre" name="nombre" required placeholder="Ingrese nombre de la expansión"
+                minlength="4" maxlength="59" #nombre="ngModel">
             <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                 <div *ngIf="nombre.errors['required']">
                     Ingrese el nombre de la expansión por favor
@@ -23,8 +24,9 @@
         </div>
         <div class="form-group">
             <label class="text-light">Precio</label>
-            <input type="number" class="form-control bg-dark text-light" id="precioExpansion" [(ngModel)]="expansion.precio" name="precio" required
-                placeholder="Ingrese precio" min="0" #precio="ngModel">
+            <input type="number" class="form-control bg-dark text-light" id="precioExpansion"
+                [(ngModel)]="expansion.precio" name="precio" required placeholder="Ingrese precio" min="0"
+                #precio="ngModel">
             <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
                 <div *ngIf="precio.errors['required']">
                     Ingrese el precio de la expansión por favor
@@ -41,4 +43,7 @@
         </div>
         <br>
     </form>
+    <div class="text-center">
+        <button (click)="irListaExpansiones()" class="btn btn-secondary">Volver</button>
+    </div>
 </div>
