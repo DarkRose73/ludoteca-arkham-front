@@ -20,6 +20,7 @@ export class ListaJuegosComponent implements OnInit {
   expansiones: any;
   total: number;
   idUsuario: number;
+  nombreUsuario: String;
 
   constructor(private juegoServicio: JuegoService, private router: Router, private expansionServicio: ExpansionesService, private usuarioServicio: UsuarioService, private route: ActivatedRoute) { }
 
@@ -27,6 +28,9 @@ export class ListaJuegosComponent implements OnInit {
   ngOnInit(): void {
     this.idUsuario = this.route.snapshot.params['id'];
     this.obtenerJuegosUsuario();
+    this.usuarioServicio.obtenerUsuarioPorId(this.idUsuario).subscribe(dato => {
+      this.nombreUsuario = dato.nombreUsuario;
+    });
   }
   private obtenerJuegosUsuario() {
     this.total = 0;
@@ -51,7 +55,7 @@ export class ListaJuegosComponent implements OnInit {
     this.router.navigate(['actualizar-juego', this.idUsuario, id]);
   }
   verDetalles(id: number) {
-    this.router.navigate(['juego-detalles',this.idUsuario, id]);
+    this.router.navigate(['juego-detalles', this.idUsuario, id]);
   }
 
   eliminarJuego(id: number) {
@@ -84,10 +88,32 @@ export class ListaJuegosComponent implements OnInit {
   }
 
   verExpansiones(id: number) {
-    this.router.navigate(['juego-expansiones',this.idUsuario, id]);
+    this.router.navigate(['juego-expansiones', this.idUsuario, id]);
   }
 
   agregarJuegoUsuario(id: number) {
     this.router.navigate(['registrar-juego', id]);
+  }
+
+  irLogin() {
+    Swal.fire({
+      title: "¿Está seguro querer cerrar sesión?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      confirmButtonText: "Sí",
+      cancelButtonColor: "red",
+      cancelButtonText: "No"
+    }).then(resultado => {
+      if (resultado.value) {
+        Swal.fire({
+          title: "Cerrando sesión",
+          text: "Redireccionando...",
+          confirmButtonText: "Ok",
+        }).then(resp => {
+          this.router.navigate(['/']);
+        });
+      }
+    });
   }
 }

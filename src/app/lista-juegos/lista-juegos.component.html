@@ -1,4 +1,4 @@
-<h2 class="text-light text-center">Lista juegos</h2>
+<h2 class="text-light text-center">Lista juegos de {{nombreUsuario}}</h2>
 <div class="card card-body bg-dark opacidad mx-auto border-danger">
     <table class="table table-borderless">
         <thead class="text-light">
@@ -37,7 +37,10 @@
         </tbody>
     </table>
 </div>
-<div class="card-footer text-center">
-    <button (click)="agregarJuegoUsuario(idUsuario)" class="btn btn-dark btn-outline-danger"
-    style="margin-left : 20px">Agregar Juego</button>
+<div class="card-footer">
+
+    <br>
+    <button (click)="agregarJuegoUsuario(idUsuario)" class="btn btn-success btn-outline-light">Agregar Juego</button>
+    <button (click)="irLogin()" class="btn btn-danger btn-outline-light" style="margin-left: 60px;">Cerrar Sesión</button>
+
 </div>
